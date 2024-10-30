@@ -5,7 +5,7 @@ import string
 import pygame  #Pygame нужен для громкости звука и нормального проигрывания, пожалуйста, разрешите, MOLU
 
 # Константы
-WINDOW_TITLE = "Key Generator"
+WINDOW_TITLE = "KeyGen for Factorio"
 WINDOW_SIZE = "700x500"
 BUTTON_COPY_DEFAULT_TEXT = "Копировать"
 BUTTON_COPY_SUCCESS_TEXT = "Скопировано!"
@@ -54,9 +54,19 @@ key_entry.pack(pady=20)
 generate_button = tk.Button(root, text=BUTTON_GENERATE_TEXT, command=generate_key, font=("Helvetica", 14), bg='green', fg='white')
 generate_button.pack(pady=10)
 
+def on_enter(e):
+    e.widget['bg'] = 'lightgreen'
+
+def on_leave(e):
+    e.widget['bg'] = 'green'
+
+generate_button.bind("<Enter>", on_enter)
+generate_button.bind("<Leave>", on_leave)
+
 # Кнопка для копирования ключа
 copy_button = tk.Button(root, text=BUTTON_COPY_DEFAULT_TEXT, command=copy_to_clipboard, font=("Helvetica", 12), bg='lightblue')
 copy_button.pack(pady=5)
+
 
 # Запуск основного цикла
 root.mainloop()                      
